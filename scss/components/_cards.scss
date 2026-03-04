@@ -1,0 +1,128 @@
+.hero-card,
+.card,
+.faq-card,
+.stats-grid p,
+.case-card,
+.quote-card,
+.plan-card,
+.contact-card,
+.local-box {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.hero-card {
+  padding: 1.3rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-card h2 {
+  margin-bottom: 0.6rem;
+}
+
+.cards,
+.faq-grid,
+.stats-grid,
+.cases-grid,
+.plans-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.cards,
+.stats-grid,
+.cases-grid,
+.plans-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.faq-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.card,
+.faq-card {
+  padding: 1.2rem;
+  min-height: 225px;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.card:hover,
+.card:focus-within,
+.faq-card:hover,
+.faq-card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 40px rgba(16, 32, 51, 0.16);
+  border-color: color-mix(in srgb, var(--primary) 45%, var(--border));
+}
+
+.case-card,
+.quote-card,
+.plan-card,
+.contact-card {
+  padding: 1.2rem;
+}
+
+.case-meta {
+  margin: 0;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.testimonials {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.quote-card {
+  margin: 0;
+  font-style: italic;
+}
+
+.quote-card cite {
+  display: block;
+  margin-top: 0.6rem;
+  font-style: normal;
+  color: var(--text-soft);
+  font-weight: 700;
+}
+
+.price-tag {
+  margin: 0 0 0.8rem;
+  font: 800 1.3rem/1 var(--font-display);
+  color: var(--primary-strong);
+}
+
+.feature-list {
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.timeline {
+  max-width: 74ch;
+  margin-inline: auto;
+}
+
+.timeline li {
+  margin-bottom: 0.78rem;
+}
+
+.stats-grid p {
+  margin: 0;
+  padding: 1rem;
+}
+
+.stats-grid span {
+  display: block;
+  font: 800 clamp(1.35rem, 3vw, 2rem)/1 var(--font-display);
+  color: var(--primary-strong);
+  margin-bottom: 0.42rem;
+}

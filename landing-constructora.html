@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Constructora | BPR Soluciones</title>
+  <meta name="description" content="Landing para constructoras: captar proyectos, mostrar obras y transformar visitas en presupuestos concretos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/landings-verticales.css">
+  <style>
+    :root {
+      --bg: #231d19;
+      --surface: #342a24;
+      --surface-2: #463831;
+      --text: #fff5ec;
+      --text-soft: #ecd7c6;
+      --brand: #f08d43;
+      --brand-2: #ffc887;
+      --ok: #80e4a7;
+      --line: rgba(252, 218, 186, 0.28);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#inicio" class="brand" id="inicio" aria-label="Inicio Constructora">
+        <span class="brand-mark" aria-hidden="true">OBRA</span>
+        <span>Constructora</span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#solucion">Solución</a>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero container">
+      <div class="hero-grid">
+        <div class="reveal">
+          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Landing para constructoras</p>
+          <h1>Más presupuestos cerrados para obras privadas y corporativas.</h1>
+          <p class="lead">Mostrá tus proyectos con credibilidad, destacá tu experiencia técnica y convertí visitas en oportunidades comerciales reales.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#contacto">Solicitar propuesta</a>
+            <a class="btn btn-secondary" href="https://wa.me/59891343651?text=Hola%20BPR%2C%20quiero%20una%20landing%20para%20constructora." target="_blank" rel="noopener noreferrer">Hablar por WhatsApp</a>
+          </div>
+        </div>
+        <figure class="hero-media reveal" aria-label="Ilustración de proyectos de construcción">
+          <img src="assets/img/landings/constructora.svg" alt="Visual de obras y proyectos de construcción con enfoque comercial.">
+        </figure>
+      </div>
+    </section>
+
+    <section id="solucion" class="section container">
+      <h2 class="section-title reveal">Landing enfocada en decisiones de compra</h2>
+      <p class="section-copy reveal">Contenido por tipo de obra, evidencia visual de proyectos y CTA directo para cotizar o coordinar visita técnica.</p>
+      <div class="cards">
+        <article class="card reveal">
+          <h3>Portafolio de obras</h3>
+          <p>Sección visual clara para demostrar capacidad, alcance y calidad de ejecución.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Filtro de lead comercial</h3>
+          <p>Formulario con datos mínimos necesarios para presupuesto y seguimiento inmediato.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Accesibilidad WCAG</h3>
+          <p>Contraste adecuado, textos legibles y navegación por teclado en toda la página.</p>
+        </article>
+      </div>
+
+      <div id="beneficios" class="metrics">
+        <article class="metric reveal"><span>+40%</span>oportunidades calificadas</article>
+        <article class="metric reveal"><span>+26%</span>solicitudes de presupuesto</article>
+        <article class="metric reveal"><span>AA</span>estándar de accesibilidad</article>
+      </div>
+
+      <section id="contacto" class="contact reveal" aria-label="Formulario de contacto constructora">
+        <h2 class="section-title">Pedí una propuesta para tu constructora</h2>
+        <form action="https://formsubmit.co/pdpcorrales@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Lead Landing - Constructora">
+          <input type="hidden" name="rubro" value="Constructora">
+          <input type="hidden" name="_captcha" value="true">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
+
+          <div class="form-grid">
+            <div>
+              <label for="con-name">Nombre</label>
+              <input id="con-name" name="nombre" type="text" required>
+            </div>
+            <div>
+              <label for="con-phone">Teléfono</label>
+              <input id="con-phone" name="telefono" type="tel" required>
+            </div>
+            <div>
+              <label for="con-email">Email</label>
+              <input id="con-email" name="email" type="email" required>
+            </div>
+            <div>
+              <label for="con-company">Empresa</label>
+              <input id="con-company" name="empresa" type="text" required>
+            </div>
+            <div class="full">
+              <label for="con-need">Tipo de proyecto / necesidad</label>
+              <textarea id="con-need" name="necesidad" required></textarea>
+            </div>
+          </div>
+
+          <div class="cta-row">
+            <button class="btn btn-primary" type="submit">Enviar consulta</button>
+          </div>
+          <p class="legal">CTA principal visible, versión mobile optimizada y lineamientos WCAG friendly.</p>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">BPR Soluciones · Landing Constructora</div>
+  </footer>
+
+  <script src="js/landing-verticales.js" defer></script>
+</body>
+</html>

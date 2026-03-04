@@ -139,8 +139,109 @@
     });
   }
 
+  function initIndustrySegment() {
+    var buttons = document.querySelectorAll('[data-industry-btn]');
+    var title = document.getElementById('industry-title');
+    var intro = document.getElementById('industry-intro');
+    var subtitle = document.getElementById('industry-subtitle');
+    var points = document.getElementById('industry-points');
+    var kpi = document.getElementById('industry-kpi');
+    var whatsappLink = document.getElementById('industry-whatsapp');
+    var leadIndustry = document.getElementById('lead-industry');
+
+    if (!buttons.length || !title || !intro || !points || !kpi || !whatsappLink) return;
+
+    var content = {
+      industriales: {
+        label: 'Empresas industriales',
+        title: 'Empresas industriales: más cotizaciones y menos fricción comercial',
+        intro: 'Implementación orientada a captación B2B*, seguimiento de oportunidades y respuesta rápida a consultas técnicas.',
+        points: [
+          'Formularios de cotización por línea de producto.',
+          'Automatización de respuestas y derivación por tipo de consulta.',
+          'SEO para búsquedas industriales con intención de compra.'
+        ],
+        kpi: 'Meta sugerida a 90 días: +35% de leads calificados.',
+        subtitle: 'B2B (Business to Business) es un modelo donde una empresa vende productos o servicios a otra empresa.'
+      },
+      clinicas: {
+        label: 'Centros esteticos',
+        title: 'Centros esteticos: más turnos confirmados y mejor experiencia del paciente',
+        intro: 'Optimización de adquisición digital, agenda y automatizaciones para reducir tiempos de respuesta.',
+        points: [
+          'Campañas por especialidad con páginas de alto rendimiento.',
+          'Formularios y flujos para preclasificar consultas.',
+          'Automatización de recordatorios para reducir ausentismo.'
+        ],
+        kpi: 'Meta sugerida a 90 días: +28% de reservas online.'
+      },
+      contables: {
+        label: 'Estudios contables',
+        title: 'Estudios contables: más consultas B2B y mejor ratio de cierre',
+        intro: 'Estrategia de posicionamiento experto con foco en servicios de alto valor para empresas.',
+        points: [
+          'Landing por servicio clave: impuestos, sueldos y auditoría.',
+          'Captación de leads con filtros por tamaño y urgencia.',
+          'Respuesta automática y priorización comercial de oportunidades.'
+        ],
+        kpi: 'Meta sugerida a 90 días: +32% de consultas empresariales.',
+        subtitle: 'B2B (Business to Business) es un modelo donde una empresa vende productos o servicios a otra empresa.'
+      },
+      constructoras: {
+        label: 'Constructoras',
+        title: 'Constructoras: generación de oportunidades para obras y proyectos',
+        intro: 'Comunicación comercial enfocada en confianza técnica, cartera de proyectos y contacto directo.',
+        points: [
+          'Páginas por tipo de obra y segmento objetivo.',
+          'Casos y avances para fortalecer credibilidad comercial.',
+          'Canal directo para presupuestos y visitas técnicas.'
+        ],
+        kpi: 'Meta sugerida a 90 días: +40% de oportunidades calificadas.'
+      }
+    };
+
+    function applyIndustry(industryKey) {
+      var current = content[industryKey];
+      if (!current) return;
+
+      title.textContent = current.title;
+      intro.textContent = current.intro;
+      if (subtitle) subtitle.textContent = current.subtitle || '';
+      points.innerHTML = current.points.map(function (item) { return '<li>' + item + '</li>'; }).join('');
+      kpi.textContent = current.kpi;
+      whatsappLink.href = 'https://wa.me/59891343651?text=' + encodeURIComponent('Hola BPR Soluciones, quiero una propuesta para ' + current.label.toLowerCase() + '.');
+      if (leadIndustry) leadIndustry.value = current.label;
+      window.__bprIndustryLabel = current.label;
+    }
+
+    buttons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        buttons.forEach(function (item) {
+          item.setAttribute('aria-pressed', 'false');
+          item.classList.remove('is-active');
+        });
+
+        button.setAttribute('aria-pressed', 'true');
+        button.classList.add('is-active');
+        applyIndustry(button.getAttribute('data-industry-btn'));
+      });
+    });
+
+    applyIndustry('industriales');
+  }
+
   function initLeadForm() {
     if (!leadForm || !formStatus) return;
+    var LEAD_ENDPOINT = 'https://formsubmit.co/ajax/pdpcorrales@gmail.com';
+    var submitButton = leadForm.querySelector('button[type="submit"]');
+    var startTimeInput = document.getElementById('lead-start-time');
+    var RATE_LIMIT_KEY = 'bpr-lead-last-submit';
+    var MIN_FILL_MS = 4000;
+    var MIN_INTERVAL_MS = 60000;
+
+    if (startTimeInput) {
+      startTimeInput.value = String(Date.now());
+    }
 
     leadForm.addEventListener('submit', function (event) {
       event.preventDefault();
@@ -153,8 +254,31 @@
       var data = new FormData(leadForm);
       var name = String(data.get('name') || '').trim();
       var email = String(data.get('email') || '').trim();
+      var phone = String(data.get('phone') || '').trim();
       var need = String(data.get('need') || '').trim();
       var budget = String(data.get('budget') || '').trim();
+      var industry = String(data.get('industry') || '').trim();
+      var company = String(data.get('company') || '').trim();
+      var startedAt = Number(data.get('form_started_at') || 0);
+
+      if (company) {
+        formStatus.textContent = 'No pudimos validar el envío. Intenta nuevamente.';
+        trackEvent('form_blocked_spam', { reason: 'honeypot' });
+        return;
+      }
+
+      if (!startedAt || Date.now() - startedAt < MIN_FILL_MS) {
+        formStatus.textContent = 'Esperá unos segundos y volvé a enviar.';
+        trackEvent('form_blocked_spam', { reason: 'too_fast' });
+        return;
+      }
+
+      var lastSubmitAt = Number(localStorage.getItem(RATE_LIMIT_KEY) || 0);
+      if (lastSubmitAt && Date.now() - lastSubmitAt < MIN_INTERVAL_MS) {
+        formStatus.textContent = 'Ya recibimos tu solicitud. Esperá 1 minuto para reenviar.';
+        trackEvent('form_blocked_spam', { reason: 'rate_limit' });
+        return;
+      }
 
       trackEvent('generate_lead', {
         lead_need_length: need.length,
@@ -162,17 +286,57 @@
       });
       trackEvent('form_submit', { form_id: 'lead-form' });
 
-      var subject = encodeURIComponent('Nuevo lead web - ' + name);
-      var body = encodeURIComponent(
-        'Nombre: ' + name + '\n' +
-        'Email: ' + email + '\n' +
-        'Presupuesto estimado: ' + budget + '\n\n' +
-        'Necesidad principal:\n' + need
-      );
+      if (submitButton) submitButton.disabled = true;
+      formStatus.textContent = 'Enviando propuesta...';
 
-      formStatus.textContent = 'Gracias. Abriremos tu cliente de correo para completar el envio.';
-      window.location.href = 'mailto:hola@bprsoluciones.com?subject=' + subject + '&body=' + body;
-      leadForm.reset();
+      var payload = {
+        name: name,
+        email: email,
+        phone: phone,
+        industry: industry,
+        need: need,
+        budget: budget,
+        _subject: 'Nuevo lead web - ' + name + (industry ? ' (' + industry + ')' : ''),
+        _captcha: 'true',
+        _template: 'table'
+      };
+
+      fetch(LEAD_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('request_failed');
+          }
+          return response.json();
+        })
+        .then(function (result) {
+          if (result && (result.success === 'true' || result.success === true)) {
+            formStatus.textContent = 'Gracias. Tu propuesta fue enviada correctamente.';
+            localStorage.setItem(RATE_LIMIT_KEY, String(Date.now()));
+            leadForm.reset();
+            var leadIndustryInput = document.getElementById('lead-industry');
+            if (leadIndustryInput && window.__bprIndustryLabel) {
+              leadIndustryInput.value = window.__bprIndustryLabel;
+            }
+            if (startTimeInput) {
+              startTimeInput.value = String(Date.now());
+            }
+            return;
+          }
+          throw new Error('delivery_failed');
+        })
+        .catch(function () {
+          formStatus.textContent = 'No pudimos enviar tu propuesta. Intenta nuevamente en unos minutos.';
+        })
+        .finally(function () {
+          if (submitButton) submitButton.disabled = false;
+        });
     });
   }
 
@@ -182,6 +346,7 @@
   applyVision(storedVision || 'default');
   initConsent();
   initCtaTracking();
+  initIndustrySegment();
   initLeadForm();
 
   if (cookieAccept) {

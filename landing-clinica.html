@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Clínica | BPR Soluciones</title>
+  <meta name="description" content="Landing para clínicas y centros médicos: más turnos, mejor experiencia del paciente y comunicación ágil.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/landings-verticales.css">
+  <style>
+    :root {
+      --bg: #082325;
+      --surface: #0f3336;
+      --surface-2: #175154;
+      --text: #effdfb;
+      --text-soft: #c4ece7;
+      --brand: #36c3bd;
+      --brand-2: #99f1df;
+      --ok: #5be48c;
+      --line: rgba(171, 237, 225, 0.28);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#inicio" class="brand" id="inicio" aria-label="Inicio Clínica">
+        <span class="brand-mark" aria-hidden="true">MED</span>
+        <span>Clínica</span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#solucion">Solución</a>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero container">
+      <div class="hero-grid">
+        <div class="reveal">
+          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Landing para clínicas</p>
+          <h1>Más turnos confirmados y mejor experiencia del paciente.</h1>
+          <p class="lead">Creamos una landing clara y confiable para especialidades médicas, con formularios accesibles, CTA directos y flujo optimizado de consultas.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#contacto">Solicitar propuesta</a>
+            <a class="btn btn-secondary" href="https://wa.me/59891343651?text=Hola%20BPR%2C%20quiero%20una%20landing%20para%20mi%20cl%C3%ADnica." target="_blank" rel="noopener noreferrer">Hablar por WhatsApp</a>
+          </div>
+        </div>
+        <figure class="hero-media reveal" aria-label="Ilustración de clínica digital">
+          <img src="assets/img/landings/clinica.svg" alt="Ilustración de clínica con agenda y atención digital.">
+        </figure>
+      </div>
+    </section>
+
+    <section id="solucion" class="section container">
+      <h2 class="section-title reveal">Qué aporta esta página médica</h2>
+      <p class="section-copy reveal">Comunicación confiable, navegación simple y contacto inmediato, pensada para pacientes y administrativos.</p>
+      <div class="cards">
+        <article class="card reveal">
+          <h3>Captación por especialidad</h3>
+          <p>Secciones por tratamiento y profesional para mejorar claridad y conversión.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Menos fricción</h3>
+          <p>Formulario directo, WhatsApp y CTA visibles para reservar o consultar en pocos pasos.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Accesibilidad real</h3>
+          <p>Tipografía legible, contraste alto y foco visible en todos los controles.</p>
+        </article>
+      </div>
+
+      <div id="beneficios" class="metrics">
+        <article class="metric reveal"><span>+28%</span>turnos online confirmados</article>
+        <article class="metric reveal"><span>-18%</span>ausentismo por recordatorio previo</article>
+        <article class="metric reveal"><span>WCAG AA</span>experiencia inclusiva</article>
+      </div>
+
+      <section id="contacto" class="contact reveal" aria-label="Formulario de contacto clínica">
+        <h2 class="section-title">Solicitá diagnóstico para tu clínica</h2>
+        <form action="https://formsubmit.co/pdpcorrales@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Lead Landing - Clínica">
+          <input type="hidden" name="rubro" value="Clínica">
+          <input type="hidden" name="_captcha" value="true">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
+
+          <div class="form-grid">
+            <div>
+              <label for="cli-name">Nombre</label>
+              <input id="cli-name" name="nombre" type="text" required>
+            </div>
+            <div>
+              <label for="cli-phone">Teléfono</label>
+              <input id="cli-phone" name="telefono" type="tel" required>
+            </div>
+            <div>
+              <label for="cli-email">Email</label>
+              <input id="cli-email" name="email" type="email" required>
+            </div>
+            <div>
+              <label for="cli-center">Centro médico</label>
+              <input id="cli-center" name="centro" type="text" required>
+            </div>
+            <div class="full">
+              <label for="cli-need">Objetivo principal</label>
+              <textarea id="cli-need" name="necesidad" required></textarea>
+            </div>
+          </div>
+
+          <div class="cta-row">
+            <button class="btn btn-primary" type="submit">Enviar consulta</button>
+          </div>
+          <p class="legal">CTAs visibles, contraste compatible con WCAG y envío de consulta por endpoint seguro.</p>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">BPR Soluciones · Landing Clínica</div>
+  </footer>
+
+  <script src="js/landing-verticales.js" defer></script>
+</body>
+</html>

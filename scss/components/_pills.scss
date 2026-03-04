@@ -1,0 +1,57 @@
+.logo-row {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-pill {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.38rem 0.72rem;
+  font: 700 0.78rem/1 var(--font-display);
+  letter-spacing: 0.04em;
+  background: color-mix(in srgb, var(--surface) 78%, var(--bg-soft));
+  color: var(--text);
+}
+
+button.logo-pill {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+button.logo-pill:hover,
+button.logo-pill:focus-visible {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--primary) 45%, var(--border));
+}
+
+button.logo-pill.is-active,
+button.logo-pill[aria-pressed='true'] {
+  background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+  border-color: transparent;
+  color: #ffffff;
+}
+
+#segmentos .local-box {
+  max-width: 900px;
+  margin-top: 1rem;
+  margin-inline: auto;
+}
+
+#segmentos #industry-subtitle {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+#segmentos .logo-row,
+#casos .logo-row {
+  margin-bottom: 0.9rem;
+}

@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veterinaria | BPR Soluciones</title>
+  <meta name="description" content="Landing veterinaria con impronta: hero potente, servicios destacados, bloque clinico y contacto claro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Sora:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --page-bg: #eef2f5;
+      --white: #ffffff;
+      --text: #13202a;
+      --soft: #687783;
+      --line: #d3dce3;
+      --brand: #1db7c7;
+      --brand-dark: #103f57;
+      --cta: #d7a247;
+      --cta-dark: #b8842f;
+      --max: 860px;
+      --shadow: 0 18px 38px rgba(10, 42, 57, 0.18);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 74px;
+      color-scheme: dark;
+    }
+    body {
+      background:
+        radial-gradient(900px 500px at 85% -10%, rgba(29, 183, 199, 0.18), transparent 70%),
+        radial-gradient(700px 420px at -10% 12%, rgba(215, 162, 71, 0.11), transparent 75%),
+        var(--page-bg);
+      color: var(--text);
+      font-family: "Montserrat", sans-serif;
+      line-height: 1.45;
+    }
+
+    a { color: inherit; }
+    .container { width: min(var(--max), 92vw); margin-inline: auto; }
+
+    .topbar {
+      background: color-mix(in srgb, var(--white) 92%, transparent);
+      border-bottom: 1px solid #ececec;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .brand {
+      font: 700 1.3rem/0.9 "Sora", sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    .brand small {
+      display: block;
+      font: 600 0.56rem/1.1 "Montserrat", sans-serif;
+      letter-spacing: 0.1em;
+      color: #969696;
+      margin-top: 4px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 16px;
+    }
+
+    .theme-toggle {
+      margin-left: auto;
+      margin-right: 16px;
+      width: 64px;
+      height: 34px;
+      border: 1px solid #d0dce3;
+      background: #fff;
+      border-radius: 999px;
+      color: var(--brand-dark);
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: 0.2s ease;
+      font-size: 13px;
+      line-height: 1;
+      padding: 0 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .theme-toggle:hover,
+    .theme-toggle:focus-visible {
+      border-color: var(--brand);
+      box-shadow: 0 6px 14px rgba(16, 63, 87, 0.16);
+    }
+
+    .theme-toggle .sun,
+    .theme-toggle .moon {
+      line-height: 1;
+      z-index: 1;
+      opacity: 0.72;
+    }
+
+    .theme-toggle .thumb {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #ffffff, #dce8ee);
+      border: 1px solid rgba(16, 63, 87, 0.14);
+      box-shadow:
+        0 2px 8px rgba(16, 63, 87, 0.25),
+        0 0 0 2px rgba(255, 255, 255, 0.55),
+        0 0 16px rgba(240, 191, 101, 0.42);
+      transition: transform 0.22s ease;
+    }
+
+    html[data-theme="dark"] .theme-toggle .thumb {
+      transform: translateX(30px);
+    }
+
+    html[data-theme="light"] .theme-toggle .sun,
+    html[data-theme="dark"] .theme-toggle .moon {
+      opacity: 1;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #4e4e4e;
+      font-weight: 600;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .menu a:hover,
+    .menu a:focus-visible {
+      color: var(--brand-dark);
+      border-bottom-color: var(--brand);
+    }
+
+    .menu-toggle {
+      display: none;
+      margin-left: 10px;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid #d0dce3;
+      background: #fff;
+      border-radius: 12px;
+      color: var(--brand-dark);
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .menu-toggle:hover,
+    .menu-toggle:focus-visible {
+      border-color: var(--brand);
+      box-shadow: 0 6px 14px rgba(16, 63, 87, 0.16);
+    }
+
+    .menu-toggle .bar {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      position: relative;
+      transition: 0.22s ease;
+    }
+
+    .menu-toggle .bar::before,
+    .menu-toggle .bar::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 18px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: 0.22s ease;
+    }
+
+    .menu-toggle .bar::before { top: -6px; }
+    .menu-toggle .bar::after { top: 6px; }
+
+    .topbar.menu-open .menu-toggle .bar {
+      background: transparent;
+    }
+
+    .topbar.menu-open .menu-toggle .bar::before {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .topbar.menu-open .menu-toggle .bar::after {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .hero {
+      background-image:
+        linear-gradient(to right, rgba(16, 36, 49, 0.7), rgba(16, 36, 49, 0.15) 35%, rgba(9, 26, 39, 0.54)),
+        url("https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=2200&q=80");
+      background-size: cover;
+      background-position: center;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-card {
+      width: min(325px, 88vw);
+      min-height: 260px;
+      margin-left: clamp(18px, 5vw, 88px);
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(2px);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      box-shadow: var(--shadow);
+      padding: 30px 28px;
+      text-align: left;
+      border-radius: 20px;
+    }
+
+    .hero-kicker {
+      margin: 0 0 12px;
+      color: var(--brand-dark);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-card h1 {
+      margin: 0 0 12px;
+      font: 800 clamp(2rem, 3vw, 2.7rem)/0.93 "Sora", sans-serif;
+      text-transform: uppercase;
+    }
+
+    .hero-card p {
+      margin: 0;
+      color: #3f3f3f;
+      font-size: 12px;
+    }
+
+    .cta {
+      margin-top: 18px;
+      display: inline-block;
+      background: linear-gradient(90deg, var(--cta), #f0bf65);
+      color: #2c210e;
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 10px 16px;
+      box-shadow: 0 10px 22px rgba(215, 162, 71, 0.34);
+      border-radius: 999px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cta:hover,
+    .cta:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(215, 162, 71, 0.4);
+    }
+
+    .services {
+      padding: 46px 0;
+      background: #ececec;
+      border-top: 4px solid #dfe8ed;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.7fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .block-title {
+      margin: 0;
+      font: 800 clamp(2rem, 3vw, 2.9rem)/0.9 "Sora", sans-serif;
+      text-transform: uppercase;
+    }
+
+    .block-subtitle {
+      margin: 12px 0 0;
+      color: #59626b;
+      font-size: 13px;
+      max-width: 22ch;
+    }
+
+    .service-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .service-list li {
+      background: #f8fafb;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--brand);
+      padding: 12px 12px 10px;
+      box-shadow: 0 8px 18px rgba(16, 50, 71, 0.05);
+      border-radius: 14px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .service-list li:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(16, 50, 71, 0.12);
+    }
+
+    .service-list strong {
+      display: block;
+      font: 700 0.9rem/1.1 "Sora", sans-serif;
+      color: var(--brand-dark);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .service-list span {
+      font-size: 11px;
+      color: #4a4a4a;
+    }
+
+    .about-band {
+      padding: 58px 0;
+      color: #fff;
+      background-image:
+        linear-gradient(90deg, rgba(10, 64, 89, 0.9), rgba(22, 120, 139, 0.84)),
+        url("https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=1800&q=80");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .about-wrap {
+      width: min(720px, 92vw);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .about-title {
+      position: relative;
+      padding-top: 12px;
+    }
+
+    .about-title::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 54px;
+      height: 3px;
+      background: #f2d39c;
+    }
+
+    .about-title h2 {
+      margin: 0;
+      font: 800 clamp(2rem, 3vw, 3rem)/0.9 "Sora", sans-serif;
+      text-transform: uppercase;
+    }
+
+    .about-copy {
+      background: rgba(7, 71, 97, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 16px 18px;
+      border-radius: 4px;
+      backdrop-filter: blur(2px);
+    }
+
+    .about-copy p {
+      margin: 0;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .about-stats {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .about-stats div {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 8px;
+      text-align: center;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .about-stats strong {
+      display: block;
+      font: 700 1rem/1 "Sora", sans-serif;
+      margin-bottom: 2px;
+    }
+
+    .contact {
+      background: #efefef;
+      padding: 34px 0 38px;
+    }
+
+    .contact h2 {
+      margin: 0 0 14px;
+      font: 800 clamp(2rem, 3vw, 3rem)/0.9 "Sora", sans-serif;
+      text-transform: uppercase;
+    }
+
+    .contact-shell {
+      background: #f7f7f7;
+      border: 1px solid #d7d7d7;
+      box-shadow: var(--shadow);
+      padding: 22px;
+      border-radius: 20px;
+    }
+
+    .contact-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 11px;
+      color: #4b4b4b;
+    }
+
+    .contact-meta h3 {
+      margin: 0 0 6px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #222;
+    }
+
+    .map {
+      margin-bottom: 12px;
+      border: 1px solid var(--line);
+      height: 190px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(18, 44, 60, 0.12);
+    }
+
+    .map img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 1px solid #bababa;
+      background: #ffffff;
+      padding: 9px 10px;
+      font: inherit;
+      font-size: 12px;
+    }
+
+    input:focus-visible,
+    textarea:focus-visible,
+    button:focus-visible,
+    .cta:focus-visible,
+    .menu-toggle:focus-visible {
+      outline: 3px solid #84cddd;
+      outline-offset: 1px;
+    }
+
+    textarea { min-height: 64px; resize: vertical; }
+
+    .submit-row {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    button {
+      border: 0;
+      background: linear-gradient(90deg, var(--cta), #f1c773);
+      color: #2a1f0f;
+      padding: 9px 15px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 999px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    button:hover,
+    button:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(215, 162, 71, 0.34);
+    }
+
+    .footer-band {
+      height: 34px;
+      background: linear-gradient(90deg, var(--brand-dark), var(--brand));
+    }
+
+    .credits {
+      font-size: 11px;
+      color: #516571;
+      text-align: center;
+      padding: 12px 12px 24px;
+    }
+
+    .credits a {
+      color: var(--brand-dark);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .menu-toggle { display: inline-flex; }
+      .theme-toggle { margin-right: 10px; }
+      .menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        background: #f9fcfd;
+        border: 1px solid #d6e3ea;
+        border-radius: 0 0 14px 14px;
+        box-shadow: 0 14px 24px rgba(16, 63, 87, 0.13);
+        opacity: 0;
+        transform: translateY(-6px);
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .menu a {
+        width: 100%;
+        padding: 12px 14px;
+        border-bottom: 1px solid #e5edf2;
+      }
+
+      .menu a:last-child {
+        border-bottom: 0;
+      }
+
+      .topbar.menu-open .menu {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav { min-height: 62px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-list { grid-template-columns: 1fr; }
+      .contact-meta { grid-template-columns: 1fr; }
+      .hero { min-height: 420px; }
+      .hero-card { margin: 0 auto; }
+      .about-wrap { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: 1fr; }
+      .map { height: 152px; }
+      .contact-shell { padding: 16px; }
+    }
+
+    html[data-theme="dark"] {
+      --page-bg: #0b1218;
+      --white: #101a23;
+      --text: #dfeaf2;
+      --soft: #93a7b5;
+      --line: #2b3a47;
+      --brand: #25bfd0;
+      --brand-dark: #8dd9e6;
+      --shadow: 0 18px 38px rgba(0, 0, 0, 0.45);
+    }
+
+    html[data-theme="dark"] body {
+      background:
+        radial-gradient(900px 500px at 85% -10%, rgba(37, 191, 208, 0.18), transparent 70%),
+        radial-gradient(700px 420px at -10% 12%, rgba(215, 162, 71, 0.14), transparent 75%),
+        var(--page-bg);
+    }
+
+    html[data-theme="dark"] .topbar {
+      background: color-mix(in srgb, #0f1a24 88%, transparent);
+      border-bottom-color: #23313d;
+    }
+
+    html[data-theme="dark"] .menu a {
+      color: #c8d7e2;
+    }
+
+    html[data-theme="dark"] .theme-toggle,
+    html[data-theme="dark"] .menu-toggle {
+      background: #14212d;
+      border-color: #2a3946;
+      color: #d8e9f2;
+    }
+
+    html[data-theme="dark"] .hero-card {
+      background: rgba(16, 27, 37, 0.84);
+      border-color: rgba(141, 217, 230, 0.22);
+    }
+
+    html[data-theme="dark"] .hero-kicker {
+      color: #9de3ef;
+    }
+
+    html[data-theme="dark"] .hero-card p,
+    html[data-theme="dark"] .block-subtitle,
+    html[data-theme="dark"] .service-list span,
+    html[data-theme="dark"] .contact-meta,
+    html[data-theme="dark"] .credits {
+      color: #b3c4d1;
+    }
+
+    html[data-theme="dark"] .services,
+    html[data-theme="dark"] .contact {
+      background: #0e171f;
+      border-top-color: #23313d;
+    }
+
+    html[data-theme="dark"] .service-list li {
+      background: #14202b;
+      border-color: #2a3946;
+    }
+
+    html[data-theme="dark"] .about-copy {
+      background: rgba(8, 35, 49, 0.55);
+    }
+
+    html[data-theme="dark"] .contact-shell {
+      background: #121e29;
+      border-color: #2a3946;
+    }
+
+    html[data-theme="dark"] .contact-meta h3,
+    html[data-theme="dark"] .block-title,
+    html[data-theme="dark"] .about-title h2,
+    html[data-theme="dark"] .contact h2 {
+      color: #e5f0f7;
+    }
+
+    html[data-theme="dark"] .map {
+      border-color: #2a3946;
+    }
+
+    html[data-theme="dark"] input,
+    html[data-theme="dark"] textarea {
+      background: #0f1923;
+      border-color: #2a3946;
+      color: #dbeaf4;
+    }
+
+    html[data-theme="dark"] input::placeholder,
+    html[data-theme="dark"] textarea::placeholder {
+      color: #8ea2b1;
+    }
+
+    html[data-theme="dark"] .menu {
+      background: #0f1b26;
+      border-color: #2a3946;
+    }
+
+    html[data-theme="dark"] .menu a {
+      border-bottom-color: #243340;
+    }
+
+    html[data-theme="dark"] .footer-band {
+      background: linear-gradient(90deg, #1d6f91, #24aabd);
+    }
+
+    html[data-theme="dark"] .credits a {
+      color: #9de3ef;
+    }
+
+    html[data-theme="dark"] .theme-toggle .thumb {
+      background: linear-gradient(145deg, #d6aa59, #a6762a);
+      box-shadow: 0 2px 10px rgba(215, 162, 71, 0.38);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .cta,
+      button,
+      .service-list li,
+      .menu a,
+      .menu-toggle,
+      .theme-toggle,
+      .theme-toggle .thumb,
+      .menu-toggle .bar,
+      .menu-toggle .bar::before,
+      .menu-toggle .bar::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">CLINICA+<br>ANIMALES<small>VETERINARIA</small></div>
+      <button class="theme-toggle" type="button" aria-label="Cambiar tema">
+        <span class="sun" aria-hidden="true">☀</span>
+        <span class="moon" aria-hidden="true">☾</span>
+        <span class="thumb" aria-hidden="true"></span>
+      </button>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu" aria-label="Abrir menu">
+        <span class="bar" aria-hidden="true"></span>
+      </button>
+      <nav id="main-menu" class="menu" aria-label="Navegacion principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#clinica">Nuestra Clinica</a>
+        <a href="#contacto">Sigue en Contacto</a>
+        <a href="#contacto">Reservar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <article class="hero-card">
+        <p class="hero-kicker">Cuidado premium</p>
+        <h1>Hola<br>Amigos</h1>
+        <p>Atencion veterinaria preventiva, medicina integral y urgencias con un equipo que cuida como familia.</p>
+        <a class="cta" href="#contacto">Reserva una cita</a>
+      </article>
+    </section>
+
+    <section id="servicios" class="services">
+      <div class="container services-grid">
+        <div>
+          <h2 class="block-title">Nuestros<br>Servicios</h2>
+          <p class="block-subtitle">Soluciones clinicas para cada etapa de vida de tu mascota.</p>
+        </div>
+        <ul class="service-list">
+          <li><strong>Examenes de control</strong><span>Chequeos periodicos y plan preventivo personalizado.</span></li>
+          <li><strong>Microchips</strong><span>Identificacion segura con registro digital inmediato.</span></li>
+          <li><strong>Cirugia</strong><span>Procedimientos con monitoreo y protocolo anestesico.</span></li>
+          <li><strong>Vacunacion</strong><span>Calendario completo para perros, gatos y senior.</span></li>
+          <li><strong>Emergencias</strong><span>Respuesta agil para casos de riesgo y trauma.</span></li>
+          <li><strong>Aseo</strong><span>Higiene, corte y cuidado dermatologico preventivo.</span></li>
+          <li><strong>Pension</strong><span>Estadia con supervision clinica y seguimiento.</span></li>
+          <li><strong>Asistencia dental</strong><span>Limpieza, evaluacion oral y extracciones.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="clinica" class="about-band">
+      <div class="about-wrap">
+        <div class="about-title">
+          <h2>Nuestra<br>Clinica</h2>
+        </div>
+        <div class="about-copy">
+          <p>Combinamos medicina basada en evidencia con trato cercano. Creamos planes preventivos, seguimiento post consulta y una experiencia clara para tutores primerizos y familias con varias mascotas.</p>
+          <div class="about-stats">
+            <div><strong>12</strong>Anos de experiencia</div>
+            <div><strong>24/7</strong>Canal de urgencias</div>
+            <div><strong>4.9/5</strong>Resena media</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="contact">
+      <div class="container contact-shell">
+        <h2>Sigue en<br>Contacto</h2>
+
+        <div class="contact-meta">
+          <div>
+            <h3>Nuestra Direccion</h3>
+            <div>Av. Las Flores 224<br>Montevideo, Uruguay</div>
+          </div>
+          <div>
+            <h3>Horario de Apertura</h3>
+            <div>Lun - Sab: 9:00 a 20:00<br>Urgencias: 24 horas</div>
+          </div>
+          <div>
+            <h3>Telefono</h3>
+            <div>+598 91 343 651<br>contacto@veterinaria.com</div>
+          </div>
+        </div>
+
+        <figure class="map" aria-label="Mapa de ubicacion de la clinica">
+          <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=900&q=80" alt="Mapa de referencia para ubicacion de clinica veterinaria.">
+        </figure>
+
+        <form action="https://formsubmit.co/pdpcorrales@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Lead Landing - Veterinaria">
+          <input type="hidden" name="rubro" value="Veterinaria">
+          <input type="hidden" name="_captcha" value="true">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
+
+          <div class="form-row">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="email" name="email" placeholder="Email" required>
+          </div>
+          <div class="form-row">
+            <input type="tel" name="telefono" placeholder="Telefono" required>
+            <textarea name="mensaje" placeholder="Escribe tu mensaje" required></textarea>
+          </div>
+          <div class="submit-row">
+            <button type="submit">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-band"></div>
+    <div class="credits">
+      Fuentes de imagenes:
+      <a href="https://unsplash.com/photos/close-up-photography-of-dog-eye-0hL3j7QFz9M" target="_blank" rel="noopener noreferrer">Hero</a>,
+      <a href="https://unsplash.com/photos/short-coated-brown-dog-lying-on-floor-2TS23o0LxDY" target="_blank" rel="noopener noreferrer">Banda Clinica</a>,
+      <a href="https://unsplash.com/photos/turned-on-gray-laptop-computer-in-an-office-GjYb4fV5A0A" target="_blank" rel="noopener noreferrer">Mapa Referencial</a>.
+    </div>
+  </footer>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var topbar = document.querySelector('.topbar');
+      var toggle = document.querySelector('.menu-toggle');
+      var themeToggle = document.querySelector('.theme-toggle');
+      var menu = document.querySelector('.menu');
+      if (!topbar || !toggle || !menu) return;
+
+      function closeMenu() {
+        topbar.classList.remove('menu-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+
+      toggle.addEventListener('click', function () {
+        var isOpen = topbar.classList.toggle('menu-open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closeMenu();
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 900) closeMenu();
+      });
+
+      if (themeToggle) {
+        root.setAttribute('data-theme', 'dark');
+        themeToggle.addEventListener('click', function () {
+          var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          root.setAttribute('data-theme', next);
+          root.style.colorScheme = next;
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

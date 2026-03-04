@@ -1,0 +1,23 @@
+.site-footer {
+  background: color-mix(in srgb, var(--surface) 82%, var(--bg-soft));
+}
+
+.footer-wrap {
+  padding: 1.2rem 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.footer-links a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

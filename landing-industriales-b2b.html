@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Industriales B2B | BPR Soluciones</title>
+  <meta name="description" content="Soluciones web y automatización para empresas industriales B2B: más cotizaciones calificadas y mejor respuesta comercial.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/landings-verticales.css">
+  <style>
+    :root {
+      --bg: #0b1a2a;
+      --surface: #12283f;
+      --surface-2: #1a3654;
+      --text: #edf4ff;
+      --text-soft: #c9d8ed;
+      --brand: #4aa8f0;
+      --brand-2: #ff9f55;
+      --ok: #49dcb1;
+      --line: rgba(185, 214, 243, 0.28);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#inicio" class="brand" id="inicio" aria-label="Inicio Industriales B2B">
+        <span class="brand-mark" aria-hidden="true">B2B</span>
+        <span>Industriales B2B</span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#solucion">Solución</a>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero container">
+      <div class="hero-grid">
+        <div class="reveal">
+          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Landing sector industrial</p>
+          <h1>Más cotizaciones técnicas y menos fricción comercial.</h1>
+          <p class="lead">Diseñamos una experiencia B2B enfocada en catálogos, formularios de cotización y automatización de respuesta para acelerar ventas industriales.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#contacto">Solicitar diagnóstico</a>
+            <a class="btn btn-secondary" href="https://wa.me/59891343651?text=Hola%20BPR%2C%20quiero%20una%20landing%20industrial%20B2B." target="_blank" rel="noopener noreferrer">Hablar por WhatsApp</a>
+          </div>
+        </div>
+        <figure class="hero-media reveal" aria-label="Ilustración de planta industrial conectada">
+          <img src="assets/img/landings/industrial-b2b.svg" alt="Esquema visual de procesos industriales conectados y cotización digital.">
+        </figure>
+      </div>
+    </section>
+
+    <section id="solucion" class="section container">
+      <h2 class="section-title reveal">Qué resuelve esta landing</h2>
+      <p class="section-copy reveal">Estructura orientada a decisores técnicos y compradores industriales, con mensajes claros, autoridad y CTA comercial fuerte.</p>
+      <div class="cards">
+        <article class="card reveal">
+          <h3>Captación de demanda calificada</h3>
+          <p>Formularios por línea de producto, industria y urgencia para filtrar mejor cada oportunidad.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Velocidad comercial</h3>
+          <p>Respuestas automáticas y derivación interna para reducir tiempos de contacto inicial.</p>
+        </article>
+        <article class="card reveal">
+          <h3>WCAG friendly</h3>
+          <p>Contraste AA, foco visible, estructura semántica y navegación por teclado.</p>
+        </article>
+      </div>
+
+      <div id="beneficios" class="metrics">
+        <article class="metric reveal"><span>+35%</span>leads calificados en 90 días</article>
+        <article class="metric reveal"><span>-25%</span>tiempo de respuesta comercial</article>
+        <article class="metric reveal"><span>24/7</span>captación digital activa</article>
+      </div>
+
+      <section id="contacto" class="contact reveal" aria-label="Formulario de contacto industrial">
+        <h2 class="section-title">Recibí propuesta para tu empresa</h2>
+        <form action="https://formsubmit.co/pdpcorrales@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Lead Landing - Industrial B2B">
+          <input type="hidden" name="rubro" value="Empresas industriales B2B">
+          <input type="hidden" name="_captcha" value="true">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
+
+          <div class="form-grid">
+            <div>
+              <label for="ind-name">Nombre</label>
+              <input id="ind-name" name="nombre" type="text" required>
+            </div>
+            <div>
+              <label for="ind-phone">Teléfono</label>
+              <input id="ind-phone" name="telefono" type="tel" required>
+            </div>
+            <div>
+              <label for="ind-email">Email</label>
+              <input id="ind-email" name="email" type="email" required>
+            </div>
+            <div>
+              <label for="ind-company">Empresa</label>
+              <input id="ind-company" name="empresa" type="text" required>
+            </div>
+            <div class="full">
+              <label for="ind-need">Necesidad principal</label>
+              <textarea id="ind-need" name="necesidad" required></textarea>
+            </div>
+          </div>
+
+          <div class="cta-row">
+            <button class="btn btn-primary" type="submit">Enviar consulta</button>
+          </div>
+          <p class="legal">Envío directo por endpoint seguro. Diseño accesible y compatible con WCAG 2.2 AA.</p>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">BPR Soluciones · Landing Industriales B2B</div>
+  </footer>
+
+  <script src="js/landing-verticales.js" defer></script>
+</body>
+</html>
